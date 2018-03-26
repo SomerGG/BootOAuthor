@@ -1,0 +1,54 @@
+server:
+  port: 8080
+logging:
+  level:
+    root: info
+    org.nutz: info
+spring:
+  aop:
+    auto: true
+    proxy-target-class: true
+  datasource:
+    #url: jdbc:mysql://localhost:3306/boot_oauthor?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://localhost:5432/boot_oauthor?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    driver-class-name: org.postgresql.Driver
+    username: Somer
+    password: 123456
+    druid:
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      maxActive: 50
+      initialSize: 3
+      maxWait: 60000
+      minIdle: 3
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      aop-patterns: top.somer.kernel.dao.*, top.somer.kernel.service.*
+
+nutz:
+  json:
+    auto-unicode: false
+    quote-name: true
+    ignore-null: true
+    null-as-emtry: true
+    enabled: true
+  dao:
+    runtime:
+      create: true
+      migration: false
+      basepackage: top.somer.kernel.model.mapped
+    sqlmanager:
+      paths:
+        - sqls
+jwt:
+  base64Secret: REpTS0xGSkRIQkAjJUNWRFNMR0opOQ==
+  #发行人
+  issuer: gzzg
+  #过期时间
+  expire: 600000
