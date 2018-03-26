@@ -13,9 +13,11 @@ import java.security.Key;
 import java.util.Date;
 
 /**
- * Created somuns by 2018/3/13
- * Description:
- */
+ * JWTToken 工具类
+ *
+ * @author Somer
+ * @date 2018-03-15 15:36
+ **/
 public class JwtUtils {
 
     public static Claims parseJWT(String jsonWebToken, String base64Security) {
