@@ -1,0 +1,6 @@
+ENGINE: org.beetl.core.engine.DefaultTemplateEngine
+DELIMITER_STATEMENT_START: @!
+DELIMITER_STATEMENT_END:
+ERROR_HANDLER: org.beetl.ext.web.WebErrorHandler
+FT:
+   xss: top.somer.kernel.utils.XXSDefenderFormat
