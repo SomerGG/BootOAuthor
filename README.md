@@ -39,7 +39,7 @@ BootOAuthor
 - 核心框架：Spring Boot 2.0.0
 - 安全框架：Apache Shiro 1.4.0
 - 持久层框架：Nutz 1.r.63
-- 数据库连接池：1.1.8
+- 数据库连接池：druid 1.1.8
 - 数据库：PostgreSQL
 
 ### 本地部署
