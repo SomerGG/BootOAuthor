@@ -56,7 +56,7 @@ public class StudentRest extends AbstractController {
         Clazz clazz = (Clazz) baseOperate.get(schoolRoll.getClazz(), Clazz.class);
         schoolRoll.setSchoolName(clazz.getSchoolId());// 设置所在学校名称
         schoolRoll.setClazz(clazz.getClazz());// 设置所在班级名称
-        return baseOperate.update(schoolRoll, schoolRoll.getId());
+        return baseOperate.update(schoolRoll);
     }
 
     /**

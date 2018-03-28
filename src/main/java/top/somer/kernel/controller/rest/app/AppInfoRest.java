@@ -52,7 +52,7 @@ public class AppInfoRest extends AbstractController {
     @PutMapping("/appInfo")
     @RequiresPermissions("sys:app:update")
     public AjaxResult updateAppInfo(AppInfo appInfo) {
-        return baseOperate.update(appInfo, appInfo.getId());
+        return baseOperate.update(appInfo);
     }
 
     /**
@@ -115,7 +115,7 @@ public class AppInfoRest extends AbstractController {
             return new AjaxResult(AjaxResultState.CONTENTERROR, "请选择要审核的数据!");
         } else {
             appInfo.setCheckState("1");
-            return baseOperate.update(appInfo, id);
+            return baseOperate.update(appInfo);
         }
     }
 
@@ -133,7 +133,7 @@ public class AppInfoRest extends AbstractController {
             return new AjaxResult(AjaxResultState.CONTENTERROR, "请选择要审核的数据!");
         } else {
             appInfo.setCheckState("2");
-            return baseOperate.update(appInfo, id);
+            return baseOperate.update(appInfo);
         }
     }
 }

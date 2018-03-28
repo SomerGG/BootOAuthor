@@ -2,13 +2,11 @@ package top.somer.kernel.dao.base.impl;
 
 import org.nutz.dao.Cnd;
 import org.nutz.dao.pager.Pager;
-import org.nutz.json.Json;
 import org.springframework.stereotype.Service;
 import top.somer.kernel.dao.base.BaseDao;
 import top.somer.kernel.dao.base.IBaseOperate;
 import top.somer.kernel.model.dto.*;
 import top.somer.kernel.utils.AjaxResultUtils;
-import top.somer.kernel.utils.CopyBeanUtils;
 import top.somer.kernel.utils.FunctionUtils;
 import top.somer.kernel.utils.ResultUtils;
 
@@ -31,35 +29,8 @@ public class BaseOperate extends BaseDao implements IBaseOperate {
     }
 
     @Override
-    public AjaxResult update(Object object, String id) {
-        Object old = dao.fetch(object.getClass(), Cnd.where("id", "=", id));
-        if (null != old) {
-            CopyBeanUtils.copyProperties(object, old);
-            object = Json.fromJson(object.getClass(), Json.toJson(old));
-            if (dao.updateIgnoreNull(old) > 0) {
-                return AjaxResultUtils.updateInfoMessage(object);
-            } else {
-                return AjaxResultUtils.updateInfoMessage(old);
-            }
-        } else {
-            return AjaxResultUtils.updateInfoMessage(null);
-        }
-    }
-
-    @Override
-    public AjaxResult update(Object object, Integer id) {
-        Object old = dao.fetch(object.getClass(), Cnd.where("id", "=", id));
-        if (null != old) {
-            CopyBeanUtils.copyProperties(object, old);
-            object = Json.fromJson(object.getClass(), Json.toJson(old));
-            if (dao.updateIgnoreNull(old) > 0) {
-                return AjaxResultUtils.updateInfoMessage(object);
-            } else {
-                return AjaxResultUtils.updateInfoMessage(old);
-            }
-        } else {
-            return AjaxResultUtils.updateInfoMessage(null);
-        }
+    public AjaxResult update(Object object) {
+        return AjaxResultUtils.updateInfoMessage(dao.updateIgnoreNull(object) > 0 ? object : null);
     }
 
     @Override

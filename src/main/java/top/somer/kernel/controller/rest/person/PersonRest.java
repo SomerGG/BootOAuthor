@@ -51,7 +51,7 @@ public class PersonRest extends AbstractController {
     @PutMapping("/person")
     @RequiresPermissions("sys:person:update")
     public AjaxResult updatePerson(Person person) {
-        return baseOperate.update(person, person.getId());
+        return baseOperate.update(person);
     }
 
     /**

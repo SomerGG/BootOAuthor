@@ -52,7 +52,7 @@ public class UserRest extends AbstractController {
     @PutMapping("/user")
     @RequiresPermissions("sys:user:update")
     public AjaxResult updateUser(SysUser sysUser) {
-        return baseOperate.update(sysUser, sysUser.getId());
+        return baseOperate.update(sysUser);
     }
 
     /**

@@ -51,7 +51,7 @@ public class SchoolRest extends AbstractController {
     @PutMapping("/school")
     @RequiresPermissions("sys:school:update")
     public AjaxResult updateSchool(School school) {
-        return baseOperate.update(school, school.getId());
+        return baseOperate.update(school);
     }
 
     /**
@@ -118,7 +118,7 @@ public class SchoolRest extends AbstractController {
     @PutMapping("/clazz")
     @RequiresPermissions("sys:clazz:update")
     public AjaxResult updateClazz(Clazz clazz) {
-        return baseOperate.update(clazz, clazz.getId());
+        return baseOperate.update(clazz);
     }
 
     /**

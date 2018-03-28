@@ -27,19 +27,9 @@ public interface IBaseOperate {
      * 更新
      *
      * @param object
-     * @param id
      * @return
      */
-    AjaxResult update(Object object, String id);
-
-    /**
-     * 更新
-     *
-     * @param object
-     * @param id
-     * @return
-     */
-    AjaxResult update(Object object, Integer id);
+    AjaxResult update(Object object);
 
     /**
      * 获取详情

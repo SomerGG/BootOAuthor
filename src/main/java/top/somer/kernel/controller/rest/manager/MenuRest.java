@@ -110,7 +110,7 @@ public class MenuRest extends AbstractController {
     @PutMapping("/menu")
     @RequiresPermissions("sys:menu:update")
     public AjaxResult updateMenu(SysMenu sysMenu) {
-        return baseOperate.update(sysMenu, sysMenu.getId());
+        return baseOperate.update(sysMenu);
     }
 
     /**

@@ -157,7 +157,7 @@ public class LoginController {
             userToken.setExpireTime(expireTime);// 设置token过期时间
             userToken.setUpdateTime(now);
             // 更新token
-            baseOperate.update(userToken, userToken.getId());
+            baseOperate.update(userToken);
         }
         return new AjaxResult(AjaxResultState.OK, "登录成功！", token);
     }

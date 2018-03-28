@@ -104,7 +104,7 @@ public class LoginRest extends AbstractController {
             userToken.setToken(newToken);// 设置token
             userToken.setUpdateTime(now);
             // 更新token
-            baseOperate.update(userToken, userToken.getId());
+            baseOperate.update(userToken);
         }
         return new AjaxResult(AjaxResultState.OK, "登录成功！", token);
     }
@@ -137,7 +137,7 @@ public class LoginRest extends AbstractController {
             return new AjaxResult(AjaxResultState.CONTENTERROR, "新密码不能与旧密码相同!");
         } else {
             sysUser.setPassword(newPassword);
-            if (baseOperate.update(sysUser, sysUser.getId()).getCode().equals(AjaxResultState.OK)) {
+            if (baseOperate.update(sysUser).getCode().equals(AjaxResultState.OK)) {
                 return new AjaxResult(AjaxResultState.OK, "修改成功!");
             } else {
                 return new AjaxResult(AjaxResultState.INNERERROR, "系统异常，请联系管理员!");

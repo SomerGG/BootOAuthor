@@ -50,7 +50,7 @@ public class OrganizationRest extends AbstractController {
     @PutMapping("/organization")
     @RequiresPermissions("sys:org:update")
     public AjaxResult updateOrganization(Organization organization) {
-        return baseOperate.update(organization, organization.getId());
+        return baseOperate.update(organization);
     }
 
     /**
