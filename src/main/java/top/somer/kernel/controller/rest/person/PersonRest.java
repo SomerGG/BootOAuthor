@@ -6,7 +6,7 @@ import org.nutz.dao.pager.Pager;
 import org.nutz.mvc.annotation.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import top.somer.kernel.controller.action.AbstractController;
+import top.somer.kernel.controller.AbstractController;
 import top.somer.kernel.dao.base.IBaseOperate;
 import top.somer.kernel.model.dto.AjaxResult;
 import top.somer.kernel.model.dto.CndType;

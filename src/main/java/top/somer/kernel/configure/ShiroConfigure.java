@@ -52,11 +52,8 @@ public class ShiroConfigure {
         chains.put("/login", "anon");
         chains.put("/admin", "anon");
         chains.put("/logout", "logout_cus");
-        chains.put("/assets/**", "anon");
         chains.put("/druid/**", "anon");
         chains.put("/api/login", "anon");
-        chains.put("/dologin", "anon");
-        chains.put("/oauth/login", "anon");
         chains.put("/**", "oauth2");
 
         shiroFilter.setFilterChainDefinitionMap(chains);

@@ -61,7 +61,7 @@ public class BaseOperate extends BaseDao implements IBaseOperate {
             totalNumber = ResultUtils.getSql(TotalCount.class, dao, sqlSize, cnd).getTotalNumber();
         }
         resultData.setRow((List<Object>) list);
-        resultData.setTotal(ResultUtils.getResultTotal(pager.getPageNumber(), pager.getPageSize(), totalNumber));
+        resultData.setTotal(totalNumber);
         return AjaxResultUtils.getInfoMessage(resultData);
     }
 
@@ -90,7 +90,7 @@ public class BaseOperate extends BaseDao implements IBaseOperate {
             list = ResultUtils.getSqlListNoPager(clazz, dao, sql, cnd);
         }
         if (null == list) {
-            return new AjaxResult(AjaxResultState.CONTENTERROR, "暂无数据！");
+            return new AjaxResult(AjaxResultState.CONTENT_ERROR, "暂无数据！");
         } else {
             return new AjaxResult(AjaxResultState.OK, "获取成功！", list);
         }

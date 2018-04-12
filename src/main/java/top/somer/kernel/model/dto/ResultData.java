@@ -12,7 +12,7 @@ public class ResultData<T> implements Serializable {
 
     private List<T> row;
 
-    private ResultTotal total;
+    private Integer total;
 
     public List<T> getRow() {
         return row;
@@ -22,11 +22,11 @@ public class ResultData<T> implements Serializable {
         this.row = row;
     }
 
-    public ResultTotal getTotal() {
+    public Integer getTotal() {
         return total;
     }
 
-    public void setTotal(ResultTotal total) {
+    public void setTotal(Integer total) {
         this.total = total;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import top.somer.kernel.configure.oauth2.OAuth2Token;
 import top.somer.kernel.dao.base.IBaseOperate;
 import top.somer.kernel.model.dto.AjaxResult;
 import top.somer.kernel.model.dto.AjaxResultState;
@@ -97,7 +98,7 @@ public class LoginController {
                 sysUser.setStatus(1);
                 sysUser.setUsername(person.getUsername());
                 sysUser.setPassword("123456");//默认密码
-                if (baseOperate.add(sysUser).getCode().equals(AjaxResultState.INNERERROR)) {
+                if (baseOperate.add(sysUser).getCode().equals(AjaxResultState.INNER_ERROR)) {
                     map.put("message", "系统异常");
                 } else {
                     return returnUrl(username, sysUser.getId(), clientId, callback, response);
@@ -159,6 +160,7 @@ public class LoginController {
             // 更新token
             baseOperate.update(userToken);
         }
+        SecurityUtils.getSubject().login(new OAuth2Token(token.getToken()));
         return new AjaxResult(AjaxResultState.OK, "登录成功！", token);
     }
 }

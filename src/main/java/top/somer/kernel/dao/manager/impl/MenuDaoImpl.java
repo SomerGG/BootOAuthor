@@ -38,6 +38,7 @@ public class MenuDaoImpl extends BaseOperate implements IMenuDao {
 
     @Override
     public List<SysMenu> getChildMenu(Integer parentId) {
-        return dao.query(SysMenu.class, Cnd.where("parent_id", "=", parentId).orderBy("order_num", "asc"));
+        List<SysMenu> list = dao.query(SysMenu.class, Cnd.where("parent_id", "=", parentId).orderBy("order_num", "asc"));
+        return null != list && list.size() > 0 ? list : null;
     }
 }

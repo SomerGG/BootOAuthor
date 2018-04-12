@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.somer.kernel.controller.action.AbstractController;
+import top.somer.kernel.controller.AbstractController;
 import top.somer.kernel.dao.base.IBaseOperate;
 import top.somer.kernel.model.dto.AjaxResult;
 import top.somer.kernel.model.dto.CndType;

@@ -7,7 +7,7 @@ package top.somer.kernel.model.dto;
 
 public class AjaxResult {
 
-    private String code;
+    private Integer code;
 
     private String message;
 
@@ -16,22 +16,22 @@ public class AjaxResult {
     public AjaxResult() {
     }
 
-    public AjaxResult(String code, String message) {
+    public AjaxResult(Integer code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public AjaxResult(String code, String message, Object data) {
+    public AjaxResult(Integer code, String message, Object data) {
         this.code = code;
         this.message = message;
         this.data = data;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

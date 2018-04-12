@@ -6,7 +6,7 @@ import org.nutz.dao.pager.Pager;
 import org.nutz.mvc.annotation.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import top.somer.kernel.controller.action.AbstractController;
+import top.somer.kernel.controller.AbstractController;
 import top.somer.kernel.dao.base.IBaseOperate;
 import top.somer.kernel.model.dto.AjaxResult;
 import top.somer.kernel.model.dto.AjaxResultState;
@@ -112,7 +112,7 @@ public class AppInfoRest extends AbstractController {
     public AjaxResult setPassApp(Integer id) {
         AppInfo appInfo = (AppInfo) baseOperate.get(id, AppInfo.class);
         if (null == appInfo) {
-            return new AjaxResult(AjaxResultState.CONTENTERROR, "请选择要审核的数据!");
+            return new AjaxResult(AjaxResultState.CONTENT_ERROR, "请选择要审核的数据!");
         } else {
             appInfo.setCheckState("1");
             return baseOperate.update(appInfo);
@@ -130,7 +130,7 @@ public class AppInfoRest extends AbstractController {
     public AjaxResult setRejectApp(Integer id) {
         AppInfo appInfo = (AppInfo) baseOperate.get(id, AppInfo.class);
         if (null == appInfo) {
-            return new AjaxResult(AjaxResultState.CONTENTERROR, "请选择要审核的数据!");
+            return new AjaxResult(AjaxResultState.CONTENT_ERROR, "请选择要审核的数据!");
         } else {
             appInfo.setCheckState("2");
             return baseOperate.update(appInfo);

@@ -62,15 +62,15 @@ public class UserServiceImpl extends BaseOperate implements IUserService {
         sysUser.setCreateTime(RuntimeUtils.getCurrentTimestamp());
         sysUser.setPassword("qweasd1234");// 默认密码
         if (null == sysUser.getRoleId() || "".equals(sysUser.getRoleId())) {
-            return new AjaxResult(AjaxResultState.CONTENTERROR, "请先选择用户角色！");
+            return new AjaxResult(AjaxResultState.CONTENT_ERROR, "请先选择用户角色！");
         } else {
             if (dao.query(SysUser.class, Cnd.where("username", "=", sysUser.getUsername())).size() > 0) {
-                return new AjaxResult(AjaxResultState.CONTENTERROR, "用户名已存在！");
+                return new AjaxResult(AjaxResultState.CONTENT_ERROR, "用户名已存在！");
             } else {
                 if (null != dao.insert(sysUser)) {
                     return new AjaxResult(AjaxResultState.OK, "添加用户成功！");
                 } else {
-                    return new AjaxResult(AjaxResultState.INNERERROR, "内部错误！");
+                    return new AjaxResult(AjaxResultState.INNER_ERROR, "内部错误！");
                 }
             }
         }
@@ -93,12 +93,12 @@ public class UserServiceImpl extends BaseOperate implements IUserService {
     @Override
     public AjaxResult addRole(SysRole sysRole) {
         if (dao.query(SysRole.class, Cnd.where("role_name", "=", sysRole.getRoleName())).size() > 0) {
-            return new AjaxResult(AjaxResultState.CONTENTERROR, "已经存在" + sysRole.getRoleName() + "角色了！");
+            return new AjaxResult(AjaxResultState.CONTENT_ERROR, "已经存在" + sysRole.getRoleName() + "角色了！");
         } else {
             if (null != dao.insert(sysRole)) {
                 return new AjaxResult(AjaxResultState.OK, "添加角色成功！");
             } else {
-                return new AjaxResult(AjaxResultState.INNERERROR, "内部错误！");
+                return new AjaxResult(AjaxResultState.INNER_ERROR, "内部错误！");
             }
         }
     }
@@ -107,11 +107,11 @@ public class UserServiceImpl extends BaseOperate implements IUserService {
     public AjaxResult setRoleMenu(String menuIds, Integer roleId) {
         SysRole sysRole = dao.fetch(SysRole.class, Cnd.where("id", "=", roleId));
         if (null == sysRole) {
-            return new AjaxResult(AjaxResultState.CONTENTERROR, "请先选择角色！");
+            return new AjaxResult(AjaxResultState.CONTENT_ERROR, "请先选择角色！");
         }
         List<SysMenu> menuList = dao.query(SysMenu.class, Cnd.where("id", "in", menuIds));
         if (null == menuList || menuList.size() <= 0) {
-            return new AjaxResult(AjaxResultState.CONTENTERROR, "请先选择菜单！");
+            return new AjaxResult(AjaxResultState.CONTENT_ERROR, "请先选择菜单！");
         } else {
             // 清除原有菜单
             dao.clearLinks(sysRole, "menuList");
@@ -126,12 +126,12 @@ public class UserServiceImpl extends BaseOperate implements IUserService {
     public AjaxResult getRoleMenu(Integer roleId) {
         SysRole sysRole = dao.fetch(SysRole.class, Cnd.where("id", "=", roleId));
         if (null == sysRole) {
-            return new AjaxResult(AjaxResultState.CONTENTERROR, "未获取到相关角色!");
+            return new AjaxResult(AjaxResultState.CONTENT_ERROR, "未获取到相关角色!");
         } else {
             sysRole = dao.fetchLinks(sysRole, "menuList");
             List<SysMenu> menuList = sysRole.getMenuList();
             if (null == menuList || menuList.size() <= 0) {
-                return new AjaxResult(AjaxResultState.CONTENTERROR, "该角色尚未分配菜单!");
+                return new AjaxResult(AjaxResultState.CONTENT_ERROR, "该角色尚未分配菜单!");
             } else {
                 return new AjaxResult(AjaxResultState.OK, "获取菜单成功!", menuList);
             }
@@ -142,11 +142,11 @@ public class UserServiceImpl extends BaseOperate implements IUserService {
     public AjaxResult setRolePermission(String permsId, Integer roleId) {
         SysRole sysRole = dao.fetch(SysRole.class, Cnd.where("id", "=", roleId));
         if (null == sysRole) {
-            return new AjaxResult(AjaxResultState.CONTENTERROR, "请先选择角色！");
+            return new AjaxResult(AjaxResultState.CONTENT_ERROR, "请先选择角色！");
         }
         List<SysPermission> permissionList = dao.query(SysPermission.class, Cnd.where("id", "in", permsId));
         if (null == permissionList || permissionList.size() <= 0) {
-            return new AjaxResult(AjaxResultState.CONTENTERROR, "请先选择权限！");
+            return new AjaxResult(AjaxResultState.CONTENT_ERROR, "请先选择权限！");
         } else {
             // 清除原有权限
             dao.clearLinks(sysRole, "permissionList");

@@ -36,7 +36,7 @@ public class MenuServiceImpl implements IMenuService {
             }
         }
         if (null == menuList) {
-            ajaxResult.setCode(AjaxResultState.CONTENTERROR);
+            ajaxResult.setCode(AjaxResultState.CONTENT_ERROR);
             ajaxResult.setMessage("未获取到相关菜单信息！");
         } else {
             ajaxResult.setCode(AjaxResultState.OK);
@@ -79,11 +79,13 @@ public class MenuServiceImpl implements IMenuService {
      */
     private List<SysMenu> getMenuTreeList(List<SysMenu> menuList, List<Integer> menuIdList) {
         List<SysMenu> subMenuList = Lists.newArrayList();
-        for (SysMenu entity : menuList) {
-            if (entity.getType() == MenuType.CATALOG.getValue()) {// 目录
-                entity.setList(getMenuTreeList(getUserMenu(entity.getId(), menuIdList), menuIdList));
+        if (null != menuList && menuList.size() > 0) {
+            for (SysMenu entity : menuList) {
+                if (entity.getType() == MenuType.CATALOG.getValue()) {// 目录
+                    entity.setList(getMenuTreeList(getUserMenu(entity.getId(), menuIdList), menuIdList));
+                }
+                subMenuList.add(entity);
             }
-            subMenuList.add(entity);
         }
         return subMenuList;
     }

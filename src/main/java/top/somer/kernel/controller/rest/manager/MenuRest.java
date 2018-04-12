@@ -5,7 +5,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.nutz.dao.pager.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import top.somer.kernel.controller.action.AbstractController;
+import top.somer.kernel.controller.AbstractController;
 import top.somer.kernel.dao.base.IBaseOperate;
 import top.somer.kernel.dao.manager.IMenuDao;
 import top.somer.kernel.model.dto.AjaxResult;
@@ -124,7 +124,7 @@ public class MenuRest extends AbstractController {
     public AjaxResult delMenu(String id) {
         List<SysMenu> childMenuList = menuDao.getChildMenu(Integer.valueOf(id));
         if (null != childMenuList && childMenuList.size() > 0) {
-            return new AjaxResult(AjaxResultState.CONTENTERROR, "请先删除子菜单或按钮！");
+            return new AjaxResult(AjaxResultState.CONTENT_ERROR, "请先删除子菜单或按钮！");
         } else {
             return baseOperate.delete(SysMenu.class, id);
         }

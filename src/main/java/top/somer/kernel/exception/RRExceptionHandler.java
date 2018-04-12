@@ -1,4 +1,4 @@
-package top.somer.kernel.utils.exception;
+package top.somer.kernel.exception;
 
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authz.AuthorizationException;
@@ -31,7 +31,7 @@ public class RRExceptionHandler {
         } catch (AuthorizationException e) {
             logger.error(e.getMessage(), e);
         }
-        return new AjaxResult("500", "没有权限，请联系管理员授权");
+        return new AjaxResult(500, "没有权限，请联系管理员授权");
     }
 
     /**
@@ -46,7 +46,7 @@ public class RRExceptionHandler {
         } catch (IncorrectCredentialsException e) {
             logger.error(e.getMessage(), e);
         }
-        return new AjaxResult("401", "token失效");
+        return new AjaxResult(401, "token失效");
     }
 
 }

@@ -1,4 +1,4 @@
-package top.somer.kernel.controller.action;
+package top.somer.kernel.controller;
 
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;

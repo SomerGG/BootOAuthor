@@ -18,7 +18,7 @@ public class AjaxResultUtils {
             ajaxResult.setData(t);
             ajaxResult.setMessage("添加成功！");
         } else {
-            ajaxResult.setCode(AjaxResultState.INNERERROR);
+            ajaxResult.setCode(AjaxResultState.INNER_ERROR);
             ajaxResult.setMessage("内部错误！");
         }
         return ajaxResult;
@@ -31,7 +31,7 @@ public class AjaxResultUtils {
             ajaxResult.setData(t);
             ajaxResult.setMessage("更新成功！");
         } else {
-            ajaxResult.setCode(AjaxResultState.INNERERROR);
+            ajaxResult.setCode(AjaxResultState.INNER_ERROR);
             ajaxResult.setMessage("内部错误！");
         }
         return ajaxResult;
@@ -44,7 +44,7 @@ public class AjaxResultUtils {
             ajaxResult.setMessage("获取成功");
             ajaxResult.setData(t);
         } else {
-            ajaxResult.setCode(AjaxResultState.CONTENTERROR);
+            ajaxResult.setCode(AjaxResultState.CONTENT_ERROR);
             ajaxResult.setMessage("未获取到相关数据！");
         }
         return ajaxResult;
@@ -56,10 +56,9 @@ public class AjaxResultUtils {
             ajaxResult.setCode(AjaxResultState.OK);
             ajaxResult.setMessage("删除成功！");
         } else {
-            ajaxResult.setCode(AjaxResultState.CONTENTERROR);
+            ajaxResult.setCode(AjaxResultState.CONTENT_ERROR);
             ajaxResult.setMessage("请求错误！");
         }
         return ajaxResult;
     }
-
 }

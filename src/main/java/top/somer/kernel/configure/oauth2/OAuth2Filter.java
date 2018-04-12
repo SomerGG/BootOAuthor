@@ -1,10 +1,10 @@
 package top.somer.kernel.configure.oauth2;
 
-import com.google.gson.Gson;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.web.filter.authc.AuthenticatingFilter;
+import org.nutz.json.Json;
 import top.somer.kernel.model.dto.AjaxResult;
 
 import javax.servlet.ServletRequest;
@@ -43,11 +43,8 @@ public class OAuth2Filter extends AuthenticatingFilter {
         String token = getRequestToken((HttpServletRequest) request);
         if (StringUtils.isBlank(token)) {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
-            AjaxResult result = new AjaxResult();
-            result.setCode("401");
-            result.setMessage("invalid token");
-            String json = new Gson().toJson(result);
-            httpResponse.getWriter().print(json);
+            AjaxResult result = new AjaxResult(401, "invalid token");
+            httpResponse.getWriter().print(Json.toJson(result));
             return false;
         }
         return executeLogin(request, response);
@@ -60,11 +57,8 @@ public class OAuth2Filter extends AuthenticatingFilter {
         try {
             //处理登录失败的异常
             Throwable throwable = e.getCause() == null ? e : e.getCause();
-            AjaxResult result = new AjaxResult();
-            result.setCode("401");
-            result.setMessage(throwable.getMessage());
-            String json = new Gson().toJson(result);
-            httpResponse.getWriter().print(json);
+            AjaxResult result = new AjaxResult(401, throwable.getMessage());
+            httpResponse.getWriter().print(Json.toJson(request));
         } catch (IOException e1) {
             e1.printStackTrace();
         }

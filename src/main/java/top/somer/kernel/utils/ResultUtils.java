@@ -6,31 +6,12 @@ import org.nutz.dao.Sqls;
 import org.nutz.dao.entity.Entity;
 import org.nutz.dao.pager.Pager;
 import org.nutz.dao.sql.Sql;
-import top.somer.kernel.model.dto.ResultTotal;
 
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
 public class ResultUtils {
-
-    /**
-     * 获取返回总数
-     *
-     * @param pageSize
-     * @param pageNumber
-     * @param total
-     * @return
-     */
-    public static ResultTotal getResultTotal(int pageNumber, int pageSize, int total) {
-        ResultTotal resultTotal = new ResultTotal();
-        resultTotal.setCurrentNumber(pageNumber);
-        resultTotal.setPageSize(pageSize);
-        resultTotal.setTotalItems(total);
-        resultTotal.setTotalPage(resultTotal.getTotalItems() % pageSize >= 1
-                ? resultTotal.getTotalItems() / pageSize + 1 : resultTotal.getTotalItems() / pageSize);
-        return resultTotal;
-    }
 
     /**
      * 自定义Sql查询返回多条记录
