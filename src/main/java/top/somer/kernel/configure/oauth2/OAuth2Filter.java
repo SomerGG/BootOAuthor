@@ -43,8 +43,7 @@ public class OAuth2Filter extends AuthenticatingFilter {
         String token = getRequestToken((HttpServletRequest) request);
         if (StringUtils.isBlank(token)) {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
-            AjaxResult result = new AjaxResult(401, "invalid token");
-            httpResponse.getWriter().print(Json.toJson(result));
+            httpResponse.getWriter().print(Json.toJson(new AjaxResult(401, "invalid token")));
             return false;
         }
         return executeLogin(request, response);
@@ -57,8 +56,7 @@ public class OAuth2Filter extends AuthenticatingFilter {
         try {
             //处理登录失败的异常
             Throwable throwable = e.getCause() == null ? e : e.getCause();
-            AjaxResult result = new AjaxResult(401, throwable.getMessage());
-            httpResponse.getWriter().print(Json.toJson(request));
+            httpResponse.getWriter().print(Json.toJson(new AjaxResult(401, throwable.getMessage())));
         } catch (IOException e1) {
             e1.printStackTrace();
         }

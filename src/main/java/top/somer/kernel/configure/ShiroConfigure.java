@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import top.somer.kernel.configure.oauth2.OAuth2Filter;
 import top.somer.kernel.configure.oauth2.OAuth2Realm;
-import top.somer.kernel.configure.oauth2.Oauth2LogoutFilter;
 
 import javax.servlet.Filter;
 import java.util.HashMap;
@@ -44,14 +43,13 @@ public class ShiroConfigure {
         // OAuth2过滤
         Map<String, Filter> filters = new HashMap<>();
         filters.put("oauth2", new OAuth2Filter());
-        filters.put("logout_cus", new Oauth2LogoutFilter());
         shiroFilter.setFilters(filters);
 
         // 配置拦截链
         Map<String, String> chains = Maps.newHashMap();
         chains.put("/login", "anon");
         chains.put("/admin", "anon");
-        chains.put("/logout", "logout_cus");
+        chains.put("/logout", "logout");
         chains.put("/druid/**", "anon");
         chains.put("/api/login", "anon");
         chains.put("/**", "oauth2");

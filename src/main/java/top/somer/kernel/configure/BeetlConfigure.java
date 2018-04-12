@@ -13,6 +13,12 @@ import org.springframework.core.io.support.ResourcePatternUtils;
 
 import java.util.Map;
 
+/**
+ * Beetl模板配置
+ *
+ * @author Somer
+ * @date 2018-03-02 11:06
+ **/
 @Configuration
 public class BeetlConfigure {
 
@@ -27,18 +33,14 @@ public class BeetlConfigure {
         if (loader == null) {
             loader = BeetlConfigure.class.getClassLoader();
         }
-        ClasspathResourceLoader classpathResourceLoader = new ClasspathResourceLoader(loader,
-                "templates");
+        ClasspathResourceLoader classpathResourceLoader = new ClasspathResourceLoader(loader,"templates");
         beetlGroupUtilConfiguration.setResourceLoader(classpathResourceLoader);
         beetlGroupUtilConfiguration.setSharedVars(runtimeVars);
-
-
         beetlGroupUtilConfiguration.setConfigFileResource(patternResolver.getResource("classpath:beetl.yml"));
         beetlGroupUtilConfiguration.init();
         //如果使用了优化编译器，涉及到字节码操作，需要添加ClassLoader
         beetlGroupUtilConfiguration.getGroupTemplate().setClassLoader(loader);
         return beetlGroupUtilConfiguration;
-
     }
 
     @Bean(name = "beetlViewResolver")
